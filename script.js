@@ -1,8 +1,8 @@
 // created global variables to be accessed later
 const saveButton = document.querySelector(".saveBtn");
 var timeBlock = document.querySelector(".time-block");
-var userHour = document.getElementById("currentDay");
-
+var currentDay = document.getElementById("currentDay");
+var currentHour = parseInt(dayjs().format("H"))
 var userInput;
 
 
@@ -31,22 +31,29 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  currentDay.innerText = dayjs().format("dddd MMMM D")
+
 
   // created function to compare if userhour was the same as the hour timeblock and then update style accordingly
   function updateHour() {
-    if (timeBlock === userHour) {
-      $(timeBlock).removeClass("future");
-      $(timeBlock).removeClass("past");
-      $(timeBlock).addClass("present");
-    };  else if (timeBlock < userHour) {
-      $(timeBlock).removeClass("future");
-      $(timeBlock).removeClass("present");
-      $(timeBlock).addClass("past");
-    };  else (timeBlock > userHour) {
-      $(timeBlock).removeClass("past");
-      $(timeBlock).removeClass("present");
-      $(timeBlock).addClass("future");
-    };
+    $(".time-block").each(function () {
+      var blockHour = parseInt(
+        $(this).attr("id")
+      )
+      console.log(blockHour)
+      if (blockHour < currentHour) {
+        $(this).addClass("past");
+      }
+      else if (blockHour === currentHour) {
+        $(this).removeClass("past");
+        $(this).addClass("present");
+      }
+      else {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
+      };
+    })
   };
 
   // created function to update tasks in time blocks
@@ -55,8 +62,8 @@ $(function () {
   };
 
 
-
-
+  updateHour()
+  saveButton.addEventListener("click", updateTask)
 });
 
-saveButton.addEventListener("click", updateTask)
+// come back and explain it go through the whole code one more time
