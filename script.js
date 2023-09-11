@@ -3,8 +3,13 @@ const saveButton = document.querySelector(".saveBtn");
 var timeBlock = document.querySelector(".time-block");
 var currentDay = document.getElementById("currentDay");
 var currentHour = parseInt(dayjs().format("H"))
-var userInput;
+var userInput = document.querySelector(".input");
+const description = document.querySelector(".description");
 
+var hour = document.querySelector("data-hour");
+var text = document.querySelector("textarea");
+
+// description.innerHTML = localStorage.getItem("task");
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -56,14 +61,85 @@ $(function () {
     })
   };
 
+  // value.addEventListener("click", function (event) {
+  //   if (event.target.matches('button')) {
+  //     console.log("clicked button");
+  //     console.log(event.target)
+  //   }
+
   // created function to update tasks in time blocks
-  function updateTask() {
-    localStorage.setItem(userInput);
+  // function updateTask() {
+  //   localStorage.setItem("task", userInput.value);
+  //   description.innerHTML = localStorage.getItem("task");
+  // }
+    value.addEventListener("click", function (event) {
+    if (event.target.matches('button')) {
+      console.log("clicked button");
+      console.log(event.target)
+    }
+
+
+
+  function saveSchedule(event) {
+    const timeBlock = event.target.parentElement.getAttribute("time-block");
+    const text = event.target.parentElement.querySelector("textarea").value;
+    const schedule = {
+      hour,
+      text
+    };
+
+
+    console.log("hour", hour);
+    console.log("text", text);
+    console.log("text", schedule);
+
+
+    if (localStorage.getItem('schedules')) {
+      const schedules = JSON.parse(localStorage.getItem('schedules'));
+      schedules.push(schedule);
+      // add back into local storage
+      localStorage.setItem('schedules', JSON.stringify(schedules));
+    } else schedules = [];
+    schedules.push(schedule);
+    localStorage.setItem('schedules', JSON.stringify(schedules));
   };
 
+  // updateHour()
+  // saveButton.addEventListener("click", updateTask)
 
   updateHour()
-  saveButton.addEventListener("click", updateTask)
+  saveButton.addEventListener("click", saveSchedule)
 });
 
-// come back and explain it go through the whole code one more time
+
+// value.addEventListener("click", function (event) {
+//   if (event.target.matches('button')) {
+//     console.log("clicked button");
+//     console.log(event.target)
+//   }
+//   function saveSchedule(event) {
+//     const hour = event.target.parentElement.getAttribute("data-hour");
+//     const text = event.target.parentElement.querySelector("textarea").value;
+//     const schedule = {
+//       hour,
+//       text
+//     };
+
+
+//     console.log("hour", hour);
+//     console.log("text", text);
+//     console.log("text", schedule);
+
+
+//     if (localStorage.getItem('schedules')) {
+//       const schedules = JSON.parse(localStorage.getItem('schedules'));
+//       schedules.push(schedule);
+//       // add back into local storage
+//       localStorage.setItem('schedules', JSON.stringify(schedules));
+//     } else schedules = [];
+//     schedules.push(schedule);
+//     localStorage.setItem('schedules', JSON.stringify(schedules));
+//   };
+// }
+
+// saveButton.addEventListener("click", saveSchedule)
