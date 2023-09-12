@@ -2,44 +2,40 @@
 const saveButton = document.querySelector(".saveBtn");
 var timeBlock = document.querySelector(".time-block");
 var currentDay = document.getElementById("currentDay");
-var currentHour = parseInt(dayjs().format("H"))
+var currentHour = parseInt(dayjs().format("H"));
 var userInput = document.querySelector(".input");
-const description = document.querySelector(".description");
-
-var hour = document.querySelector("data-hour");
-var text = document.querySelector("textarea");
-
-// description.innerHTML = localStorage.getItem("task");
-
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
 $(function () {
 
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  // created click event listener to run the function and save userInput to local storage
+  saveButton.addEventListener("click", function (){
+    var text = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+
+    localStorage.setItem(time, text);
+  })
+
+  // get items from local storage using id element of hour and class element description for the text
+    $("#9 .description").val(localStorage.getItem("9"));
+    $("#10 .description").val(localStorage.getItem("10"));
+    $("#11 .description").val(localStorage.getItem("11"));
+    $("#12 .description").val(localStorage.getItem("12"));
+    $("#13 .description").val(localStorage.getItem("13"));
+    $("#14 .description").val(localStorage.getItem("14"));
+    $("#15 .description").val(localStorage.getItem("15"));
+    $("#16 .description").val(localStorage.getItem("16"));
+    $("#17 .description").val(localStorage.getItem("17"));
+
+  // Add code to display the current date in the header of the page.
   currentDay.innerText = dayjs().format("dddd MMMM D")
 
 
   // created function to compare if userhour was the same as the hour timeblock and then update style accordingly
+  document.addEventListener("DOMContentLoaded", updateHour())
+
   function updateHour() {
     $(".time-block").each(function () {
       var blockHour = parseInt(
@@ -59,87 +55,5 @@ $(function () {
         $(this).addClass("future");
       };
     })
-  };
-
-  // value.addEventListener("click", function (event) {
-  //   if (event.target.matches('button')) {
-  //     console.log("clicked button");
-  //     console.log(event.target)
-  //   }
-
-  // created function to update tasks in time blocks
-  // function updateTask() {
-  //   localStorage.setItem("task", userInput.value);
-  //   description.innerHTML = localStorage.getItem("task");
-  // }
-    value.addEventListener("click", function (event) {
-    if (event.target.matches('button')) {
-      console.log("clicked button");
-      console.log(event.target)
-    }
-
-
-
-  function saveSchedule(event) {
-    const timeBlock = event.target.parentElement.getAttribute("time-block");
-    const text = event.target.parentElement.querySelector("textarea").value;
-    const schedule = {
-      hour,
-      text
-    };
-
-
-    console.log("hour", hour);
-    console.log("text", text);
-    console.log("text", schedule);
-
-
-    if (localStorage.getItem('schedules')) {
-      const schedules = JSON.parse(localStorage.getItem('schedules'));
-      schedules.push(schedule);
-      // add back into local storage
-      localStorage.setItem('schedules', JSON.stringify(schedules));
-    } else schedules = [];
-    schedules.push(schedule);
-    localStorage.setItem('schedules', JSON.stringify(schedules));
-  };
-
-  // updateHour()
-  // saveButton.addEventListener("click", updateTask)
-
-  updateHour()
-  saveButton.addEventListener("click", saveSchedule)
+  }
 });
-
-
-// value.addEventListener("click", function (event) {
-//   if (event.target.matches('button')) {
-//     console.log("clicked button");
-//     console.log(event.target)
-//   }
-//   function saveSchedule(event) {
-//     const hour = event.target.parentElement.getAttribute("data-hour");
-//     const text = event.target.parentElement.querySelector("textarea").value;
-//     const schedule = {
-//       hour,
-//       text
-//     };
-
-
-//     console.log("hour", hour);
-//     console.log("text", text);
-//     console.log("text", schedule);
-
-
-//     if (localStorage.getItem('schedules')) {
-//       const schedules = JSON.parse(localStorage.getItem('schedules'));
-//       schedules.push(schedule);
-//       // add back into local storage
-//       localStorage.setItem('schedules', JSON.stringify(schedules));
-//     } else schedules = [];
-//     schedules.push(schedule);
-//     localStorage.setItem('schedules', JSON.stringify(schedules));
-//   };
-// }
-
-// saveButton.addEventListener("click", saveSchedule)

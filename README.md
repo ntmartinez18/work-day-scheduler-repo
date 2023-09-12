@@ -20,7 +20,7 @@ N/A
 To use this application, navigate to the web browser. To schedule an event, click on the desired time block. Type in the event and click on the submit button for that time block. This will add the event to the work day scheduler. Time blocks are color coded for each individual hour with gray being past, red representing the current hour, and green representing future hours. 
 
 ## Credits
-Received starter code from the following repositories, 
+Received starter code from the following repositories, https://github.com/coding-boot-camp/crispy-octo-meme and https://github.com/EdenKhaos/05-work-day-scheduler/blob/master/script.js. Special thanks to Ashton Foston and Hubert Nguyen for their guidance and contribution.
 
 ## License
 MIT
