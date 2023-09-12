@@ -6,7 +6,9 @@
 Provides users a daily planner to schedule events from the standrd business hours of 9am to 5pm. Allows users to view past, present, and future hours with different styling classes to provide a clear view of the current hour and future and past hours along with those events.
 
 ## Visuals
-pic and link to deployed app
+<img src="work-day-scheduler-ss.png" alt="work-day-scheduler-application-screenshot">
+
+https://ntmartinez18.github.io/work-day-scheduler-repo/
 
 ## Technologies
 * html
